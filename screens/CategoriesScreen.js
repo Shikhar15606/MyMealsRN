@@ -10,6 +10,18 @@ const CategoriesScreen = props => {
           props.navigation.navigate({ routeName: 'CategoryMeals' });
         }}
       ></Button>
+      <Button
+        title='Replace with Meals'
+        onPress={() => {
+          props.navigation.replace('CategoryMeals');
+        }}
+      ></Button>
+      <Button
+        title='Stay here using Push'
+        onPress={() => {
+          props.navigation.push('Categories');
+        }}
+      ></Button>
     </View>
   );
 };
