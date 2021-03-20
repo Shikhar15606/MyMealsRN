@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
-import CATEGORIES from '../data/dummyData';
+import { CATEGORIES } from '../data/dummyData';
 import Colors from '../constants/colors';
 
 const CategoryMealsScreen = props => {

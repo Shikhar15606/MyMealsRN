@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   Platform,
 } from 'react-native';
-import CATEGORIES from '../data/dummyData';
+import { CATEGORIES, MEALS } from '../data/dummyData';
 import Colors from '../constants/colors';
 import CategoryGridTile from '../components/CategoryGridTile';
 
