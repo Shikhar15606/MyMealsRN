@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Button, FlatList } from 'react-native';
 import { CATEGORIES, MEALS } from '../data/dummyData';
 import Colors from '../constants/colors';
+import MealItem from '../components/MealItem';
 
 const CategoryMealsScreen = props => {
   const categoryId = props.navigation.getParam('categoryId');
@@ -16,9 +17,14 @@ const CategoryMealsScreen = props => {
 
   const renderMealItem = itemData => {
     return (
-      <View>
-        <Text>{itemData.item.title}</Text>
-      </View>
+      <MealItem
+        title={itemData.item.title}
+        duration={itemData.item.duration}
+        complexity={itemData.item.complexity}
+        affordability={itemData.item.affordability}
+        imageUrl={itemData.item.imageUrl}
+        onSelect={() => {}}
+      />
     );
   };
   return (
