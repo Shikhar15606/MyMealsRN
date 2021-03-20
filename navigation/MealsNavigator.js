@@ -14,6 +14,13 @@ import { createMaterialBottomTabNavigator } from 'react-navigation-material-bott
 import { enableScreens } from 'react-native-screens';
 enableScreens(); // for performance improvement
 
+const defaultStackNavigatorConfig = {
+  headerStyle: {
+    backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : 'white',
+  },
+  headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primaryColor,
+};
+
 const MealsNavigator = createStackNavigator(
   {
     Categories: CategoriesScreen,
@@ -24,14 +31,18 @@ const MealsNavigator = createStackNavigator(
   },
   {
     initialRouteKey: 'Categories',
-    defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor:
-          Platform.OS === 'android' ? Colors.primaryColor : 'white',
-      },
-      headerTintColor:
-        Platform.OS === 'android' ? 'white' : Colors.primaryColor,
-    },
+    defaultNavigationOptions: defaultStackNavigatorConfig,
+  }
+);
+
+const FavNavigator = createStackNavigator(
+  {
+    Favourites: FavouritesScreen,
+    MealDetail: MealDetailScreen,
+  },
+  {
+    initialRouteKey: 'Favourites',
+    defaultNavigationOptions: defaultStackNavigatorConfig,
   }
 );
 
@@ -49,7 +60,7 @@ const TabScreenConfig = {
     },
   },
   Favourites: {
-    screen: FavouritesScreen,
+    screen: FavNavigator,
     navigationOptions: {
       tabBarLabel: 'Favourites',
       tabBarIcon: tabInfo => {
