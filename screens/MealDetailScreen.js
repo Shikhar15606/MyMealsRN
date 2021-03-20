@@ -1,29 +1,24 @@
 import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
+import { CATEGORIES, MEALS } from '../data/dummyData';
+
 const MealDetailScreen = props => {
+  const mealId = props.navigation.getParam('mealId');
+  const meal = MEALS.find(meal => meal.id === mealId);
+
   return (
     <View style={styles.screen}>
-      <Text>MealDetailScreen</Text>
-      <Button
-        title='Go Back 1 Step using GoBack Method'
-        onPress={() => {
-          props.navigation.goBack();
-        }}
-      />
-      <Button
-        title='Go Back 1 Step using Pop Method'
-        onPress={() => {
-          props.navigation.pop();
-        }}
-      />
-      <Button
-        title='Go Back to 1st Screen in Stack '
-        onPress={() => {
-          props.navigation.popToTop();
-        }}
-      />
+      <Text>{meal.title}</Text>
     </View>
   );
+};
+
+MealDetailScreen.navigationOptions = navigationData => {
+  const mealId = navigationData.navigation.getParam('mealId');
+  const meal = MEALS.find(meal => meal.id === mealId);
+  return {
+    title: meal.title,
+  };
 };
 const styles = StyleSheet.create({
   screen: {
