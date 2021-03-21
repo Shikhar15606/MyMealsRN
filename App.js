@@ -5,7 +5,11 @@ import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 import MealsNavigator from './navigation/MealsNavigator';
 import { enableScreens } from 'react-native-screens';
+import { LogBox } from 'react-native';
+
 enableScreens(); // for performance improvement
+
+// LogBox.ignoreAllLogs();
 
 export default function App() {
   let [fontsLoaded] = useFonts({

@@ -1,7 +1,7 @@
 import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
-import { Platform } from 'react-native';
+import { Platform, Text } from 'react-native';
 import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealsScreen from '../screens/CategoryMealsScreen';
 import MealDetailScreen from '../screens/MealDetailScreen';
@@ -16,6 +16,12 @@ import { createDrawerNavigator } from 'react-navigation-drawer';
 const defaultStackNavigatorConfig = {
   headerStyle: {
     backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : 'white',
+  },
+  headerTitleStyle: {
+    fontFamily: 'open-sans-bold',
+  },
+  headerBackTitleStyle: {
+    fontFamily: 'open-sans',
   },
   headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primaryColor,
 };
@@ -49,7 +55,12 @@ const TabScreenConfig = {
   Meals: {
     screen: MealsNavigator,
     navigationOptions: {
-      tabBarLabel: 'Meals',
+      tabBarLabel:
+        Platform.OS === 'android' ? (
+          <Text style={{ fontFamily: 'open-sans-bold' }}>Meals</Text>
+        ) : (
+          'Meals'
+        ),
       tabBarIcon: tabInfo => {
         return (
           <Ionicons name='ios-restaurant' size={25} color={tabInfo.tintColor} />
@@ -61,7 +72,12 @@ const TabScreenConfig = {
   Favourites: {
     screen: FavNavigator,
     navigationOptions: {
-      tabBarLabel: 'Favourites',
+      tabBarLabel:
+        Platform.OS === 'android' ? (
+          <Text style={{ fontFamily: 'open-sans-bold' }}>Favourites</Text>
+        ) : (
+          'Favourites'
+        ),
       tabBarIcon: tabInfo => {
         return <Ionicons name='ios-star' size={25} color={tabInfo.tintColor} />;
       },
@@ -78,6 +94,9 @@ const MealsFavTabNavigator =
       })
     : createBottomTabNavigator(TabScreenConfig, {
         tabBarOptions: {
+          labelStyle: {
+            fontFamily: 'open-sans-bold',
+          },
           activeTintColor: Colors.accentColor,
         },
       });
