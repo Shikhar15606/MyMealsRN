@@ -8,7 +8,6 @@ import { enableScreens } from 'react-native-screens';
 import { LogBox } from 'react-native';
 
 enableScreens(); // for performance improvement
-
 // LogBox.ignoreAllLogs();
 
 export default function App() {
