@@ -10,9 +10,7 @@ import Colors from '../constants/colors';
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
-
-import { enableScreens } from 'react-native-screens';
-enableScreens(); // for performance improvement
+import { createDrawerNavigator } from 'react-navigation-drawer';
 
 const defaultStackNavigatorConfig = {
   headerStyle: {
