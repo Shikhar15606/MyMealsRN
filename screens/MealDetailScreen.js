@@ -52,14 +52,14 @@ const MealDetailScreen = props => {
 MealDetailScreen.navigationOptions = navigationData => {
   const mealTitle = navigationData.navigation.getParam('mealTitle');
   const toggleFavHandler = navigationData.navigation.getParam('toggleFav');
-
+  const isFavourite = navigationData.navigation.getParam('isFavourite');
   return {
     title: mealTitle,
     headerRight: (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item
           title='Favorite'
-          iconName='ios-star'
+          iconName={isFavourite ? 'ios-star' : 'ios-star-outline'}
           onPress={() => {
             toggleFavHandler();
           }}
