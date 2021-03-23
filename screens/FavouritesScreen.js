@@ -5,7 +5,7 @@ import HeaderButton from '../components/HeaderButton';
 import { useSelector } from 'react-redux';
 
 const FavouritesScreen = props => {
-  const displayedMeals = useSelector(state => state.favoriteMeals);
+  const displayedMeals = useSelector(state => state.meals.favoriteMeals);
   return <MealList data={displayedMeals} navigation={props.navigation} />;
 };
 

@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import HeaderButton from '../components/HeaderButton';
 import DefaultText from '../components/DefaultText';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleFavorite } from '../store/actions/meals';
 
 const ListItem = props => {
   return (
@@ -18,12 +19,15 @@ const MealDetailScreen = props => {
   const availableMeals = useSelector(state => state.meals.meals);
   const meal = availableMeals.find(meal => meal.id === mealId);
 
-  // approach 1 to provide the title of meal to header bar
-  // useEffect(()=>{
-  //   props.navigation.setParams({mealTitle:meal.title})
-  // },[meal])
-  // this approach is not good as the title will be set after the
-  // component is rendered (due to useEffect)
+  const dispatch = useDispatch();
+
+  const toggleFavoriteHandler = useCallback(() => {
+    dispatch(toggleFavorite(mealId));
+  }, [dispatch, mealId]);
+
+  useEffect(() => {
+    props.navigation.setParams({ toggleFav: toggleFavoriteHandler });
+  }, [toggleFavoriteHandler]);
 
   return (
     <ScrollView>
@@ -46,8 +50,8 @@ const MealDetailScreen = props => {
 };
 
 MealDetailScreen.navigationOptions = navigationData => {
-  const mealId = navigationData.navigation.getParam('mealId');
   const mealTitle = navigationData.navigation.getParam('mealTitle');
+  const toggleFavHandler = navigationData.navigation.getParam('toggleFav');
 
   return {
     title: mealTitle,
@@ -57,7 +61,7 @@ MealDetailScreen.navigationOptions = navigationData => {
           title='Favorite'
           iconName='ios-star'
           onPress={() => {
-            console.log('Mark as favorite!');
+            toggleFavHandler();
           }}
         />
       </HeaderButtons>
