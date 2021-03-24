@@ -9,7 +9,7 @@ import { Provider } from 'react-redux';
 import mealsReducer from './store/reducers/meals';
 
 enableScreens(); // for performance improvement
-// LogBox.ignoreAllLogs();
+LogBox.ignoreAllLogs();
 
 const rootReducer = combineReducers({
   meals: mealsReducer,
